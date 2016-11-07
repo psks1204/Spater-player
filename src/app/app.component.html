@@ -1,0 +1,53 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="" >Spater TV</a>
+  </div><!--/.nav-collapse -->
+</nav>
+<section class="main col col-lg-8" id="main">
+  <div id="fullPlayer" (mouseup)="videoService.dragStop($event)" (mousemove)="videoService.dragMove($event)" (mouseleave)="videoService.dragStop($event)">
+      <div class="embed-responsive embed-responsive-16by9">
+          <video id="videoDisplay" (click)="videoService.playVideo()" width="100%" height="100%"></video>
+          <div id="bigPlayButton" [ngClass]="{'fade-out':videoService.isPlaying}" class="fader" (click)="videoService.playVideo()">
+            <i [ngClass]="{'fa-play': !videoService.isEnds, 'fa-repeat': videoService.isEnds}" class="fa"></i>
+          </div>
+          <div id="videoTitle" [ngClass]="{'fade-out': videoService.isPlaying}" class=" fa fader">{{videoService.currentTitle}}</div>
+
+          <div id="playerToolBar"  (mouseup)="videoService.moveStop($event)"  (mousemove)="videoService.moveSlider($event)">
+            <div id="progressMeterFull" (click)="videoService.seekVideo($event)">
+              <div id="bufferMeter" [style.width.px]="videoService.calculatedBuffWidth"></div>
+              <div id="progressMeter" (click)="videoService.seekVideo($event)" [style.width.px]="videoService.calculatedWidth"></div>
+              <div id="thumbScrubber" (mousedown)="videoService.dragStart($event)" [style.left.px]="videoService.calculatedWidth - 6"></div>
+            </div>
+
+            <a id="playBtn" class="btn btn-default" (click)="videoService.playVideo()">
+        	     <i [ngClass]="{'fa-play': !videoService.isPlaying, 'fa-pause': videoService.isPlaying}" class="fa"></i>
+            </a>
+            <a id="muteBtn" class="btn btn-default" (click)="videoService.muteVideo()">
+              <i [ngClass]="{'fa-volume-off': videoService.isMuted, 'fa-volume-up': !videoService.isMuted}" class="fa"></i>
+            </a>
+            <div id="slider" (mousedown)="videoService.dragVolStart($event)">
+              <div id="progress" [style.width.px]="videoService.calculatedVolWidth"></div>
+              <div id="thumb" [style.left.px]="videoService.calculatedVolWidth"></div>
+            </div>
+
+            <span id="videoTime">{{videoService.currentTime | timeDisplay}} / {{videoService.totalTime | timeDisplay}}</span>
+            <a id="fsBtn" class="btn btn-default pull-right" (click)="videoService.fullScreen()">
+              <i [ngClass]="{'fa-expand': !videoService.isFullscreen, 'fa-compress': videoService.isFullscreen}" class="fa"></i>
+            </a>
+            <a id="detailsBtn" class="btn btn-default pull-right">
+              <i class="fa fa-cog"></i>
+            </a>
+            <a id="detailsBtn" class="btn btn-default pull-right">
+              <i class="fa fa-cc"></i>
+            </a>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sidebar col col-lg-4">
+      <ul class="list-group">
+          <h2>Playlist:</h2>
+          <li class="list-group-item" *ngFor="let playlistItem of videoService.playlist; let i = index" (click)="videoService.selectedVideo(i)">{{playlistItem.title}}</li>
+      </ul>
+  </section>
