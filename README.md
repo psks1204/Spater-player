@@ -1,7 +1,7 @@
 # SpaterTv
 
   This is only a Beta version of this app
-  it's working in progress!
+  it's a work in progress!
 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
