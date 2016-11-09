@@ -1,5 +1,9 @@
 # SpaterTv
 
+  This is only a Beta version of this app
+  it's working in progress!
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
 
 ## Development server
@@ -29,3 +33,7 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Live Preview at:
+
+  https://videops.herokuapp.com
